@@ -1,7 +1,8 @@
 const { hashPassword, generateToken } = require("../config/jwt");
 const User = require("../models/user.model");
+const bcrypt=require("bcrypt")
 
-
+//REGISTER USER
 const register = async (req, res) => {
     const { username, email, password, role } = req.body;
     try {
@@ -17,7 +18,7 @@ const register = async (req, res) => {
             role
         })
 
-        const token = generateToken(user);
+        // const token = generateToken(user);
 
         res.status(201).json({
             message: "user created successfully!",
@@ -25,13 +26,59 @@ const register = async (req, res) => {
             username: user.username,
             email: user.email,
             role: user.role || 'user',
-            token,
+            
         })
 
     } catch (err) {
         res.status(500).json({ message: "server error!", error: err.message })
     }
 }
+
+//ALL REGISTERED USERS
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.find()
+        res.status(201).json(users);
+    } catch (err) {
+        res.status(500).json({message:"server error",error:err.message})
+    }
+
+}
+//LOGIN
+const login=async (req,res)=>{
+    const {email,password}=req.body;
+    try {
+        //find the user by email
+        const user=await User.findOne({email});
+        if(!user)
+        {
+            return res.status(401).json({message:"invalid credentials!"});
+        }
+        //compare hash password
+        const isMatch=await bcrypt.compare(password,user.password);
+        if(!isMatch)
+        {
+            return res.status(400).json({message:"invalid email or password"})
+        }
+
+        const token = generateToken(user);
+
+        res.status(201).json({
+            message:"login success!",
+            id:user._id,
+            username:user.username,
+            email:user.email,
+            role:user.role,
+            token
+        })
+        
+    } catch (err) {
+        res.status(500).json({message:"server error",error:err.message})
+    }
+}
+
 module.exports = {
-    register
+    register,
+    getUsers,
+    login
 }
