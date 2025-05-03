@@ -1,3 +1,5 @@
+
+//AUTHORIZE TOKEN
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     // Expected format: Bearer <token>
@@ -23,5 +25,22 @@ const authenticateToken = (req, res, next) => {
     
   };
   
-  module.exports = authenticateToken;
+  //AUTHORIZE ROLE
+function authorizeRole(...allowedRoles) {
+    return (req, res, next) => {
+      const userRole = req.user?.role;
+  
+      if (!allowedRoles.includes(userRole)) {
+        return res.status(403).json({ message: 'Access denied: insufficient role' });
+      }
+  
+      next();
+    };
+  }
+  
+ 
+  module.exports = {
+    authenticateToken,
+    authorizeRole
+  }
   
