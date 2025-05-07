@@ -1,4 +1,5 @@
 const express=require("express");
+const cors=require("cors")
 const dotenv=require("dotenv");
 const dbconnect = require("./config/db");
 const authRoutes = require("./routes/auth.routes");
@@ -13,6 +14,7 @@ const app=express();
 dbconnect();
 
 app.use(express.json());
+app.use(cors());
 
 //ROUTES
 app.use('/api/auth',authRoutes);
