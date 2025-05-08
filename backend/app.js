@@ -10,11 +10,16 @@ const cartRoutes = require("./routes/cart.routes");
 dotenv.config();
 const app=express();
 
+const path = require("path");
+
+
 //database connection
 dbconnect();
 
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 //ROUTES
 app.use('/api/auth',authRoutes);
