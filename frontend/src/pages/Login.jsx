@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import AuthForm from '../components/AuthForm';
 import { toast } from 'react-toastify';
+import   { useNavigate }  from 'react-router-dom';
 
 const Login = () => {
+    const navigate=useNavigate();
     const [email,setEmail]=useState('');
         const [password,setPassword]=useState('');
         const [username,setUsername]=useState('');
@@ -27,13 +29,16 @@ const Login = () => {
             setTimeout(() => {
                 setMessage('');
             }, 1000);
+            // localStorage.setItem("login-token",token)
 
         }
         else
         {
             console.log('login success!');
             toast.success('login success')
-
+            localStorage.setItem("login-token", data.token); 
+            navigate('/home')
+           
         }
     } catch (error) {
         console.error("error fetching data!",error);

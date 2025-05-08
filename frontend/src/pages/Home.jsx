@@ -46,8 +46,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-
+            
             {/* Product Grid */}
+            
             <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {loading ? (
                     <p>Loading products...</p>
@@ -57,6 +58,7 @@ export default function Home() {
                     products.map((product, index) => (
                         <ProductCard
                             key={product.id || index}
+                            id={product._id}
                             name={product.name}
                             price={product.price}
                             image={product.image}
@@ -64,6 +66,7 @@ export default function Home() {
                     ))
                 )}
             </div>
+            
         </>
     );
 }

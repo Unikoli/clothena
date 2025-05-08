@@ -84,10 +84,33 @@ const deleteProduct = async (req, res) => {
     }
   };
   
+const productDetail=async (req,res)=>{
+    
+    try {
+        const product=await Product.findById(req.params.id)
+        .populate("category",'name')
+        .populate("brand",'name')
+        ;
+        if(!product){
+           return res.status(404).json({
+                message:"product not found!"
+            });
+        }
+        res.status(200).json({
+            message:"product found successfully!",
+            product,
+        })
+    } catch (err) {
+        res.status(500).json({
+            error:err.message
+        })
+    }
+}
 
 module.exports={
     add,
     index,
     update,
-    deleteProduct
+    deleteProduct,
+    productDetail
 }
