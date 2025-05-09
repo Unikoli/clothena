@@ -1,6 +1,8 @@
 import { ShoppingCart, User, Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate=useNavigate();
   return (
     <nav className="w-full bg-white shadow-md px-6 py-4 flex justify-between items-center">
       {/* Logo */}
@@ -13,8 +15,9 @@ export default function Navbar() {
         <button className="text-gray-600 hover:text-black">
           <Heart size={24} />
         </button>
-        <button className="text-gray-600 hover:text-black">
-          <ShoppingCart size={24} />
+        <button onClick={()=>navigate('/cart')} className="text-gray-600 hover:text-black">
+          
+          <ShoppingCart  size={24} />
         </button>
         <button className="text-gray-600 hover:text-black">
           <User size={24} />

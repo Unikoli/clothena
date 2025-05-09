@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchProductDetails from '../api/productdetails';
+import { handleAddToCart } from '../api/cart';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -55,7 +56,7 @@ export default function ProductDetail() {
 
           {/* Action Buttons */}
           <div className="flex gap-4 pt-4">
-            <button className="flex-1 bg-red-700 text-white font-semibold py-3 rounded hover:bg-red-800 transition">
+            <button onClick={()=>handleAddToCart(product._id)} className="flex-1 bg-red-700 text-white font-semibold py-3 rounded hover:bg-red-800 transition">
               Add to Cart
             </button>
             <button className="flex-1 bg-red-800 text-white font-semibold py-3 rounded hover:bg-red-900 transition">

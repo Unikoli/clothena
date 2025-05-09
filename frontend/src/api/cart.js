@@ -13,7 +13,7 @@ export const handleAddToCart = async (product) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`  // ✅ Capital "B" and proper spacing
+        'Authorization': `Bearer ${token}`  
       },
       body: JSON.stringify({
         productId: product.id,
@@ -34,3 +34,63 @@ export const handleAddToCart = async (product) => {
     toast.error("Something went wrong!");
   }
 };
+
+
+export const getCartItems=async ()=>{
+  try {
+    const token=localStorage.getItem("login-token");
+    if(!token){
+      toast.error("please login to continue..");
+      console.log("login required!")
+    }
+    const res=await fetch(`http://localhost:8000/api/cart`,{
+      headers:{
+        'Authorization':`Bearer ${token}`
+      }
+    })
+    const data=await res.json();
+    if(res.ok)
+    {
+      console.log("cart items success!");
+      return data;
+    }
+    else{
+      console.log(data.error)
+      return [];
+    }
+      
+
+
+  } catch (error) {
+    return [];
+
+  }
+}
+
+export const deleteProduct=async (id)=>{
+  try {
+    const token=localStorage.getItem("login-token");
+    if(!token)
+    {
+      toast.error("please login to continue!");
+    }
+    const res=await fetch(`http://localhost:8000/api/cart/${id}`,{
+      method:'DELETE',
+      headers:{
+        'Authorization':`Bearer ${token}`,
+        'Content-Type':'application/json'
+      }
+    });
+    const data=await res.json();
+    if(res.ok){
+      console.log('product deleted!',data.message);
+      return data;
+    }
+    else{
+      console.log(data.error);
+    }
+  } catch (error) {
+    console.log("something went wrong!")
+    return [];
+  }
+}
