@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { deleteProduct, getCartItems } from '../api/cart';
+import { clearCart, deleteProduct, getCartItems } from '../api/cart';
 import { Trash2 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
@@ -32,6 +32,11 @@ export default function Cart() {
   //DELETE PRODUCT
   const handleDeleteProduct= async(id)=>{
    await deleteProduct(id);
+    loadCart();
+  }
+  //clear cart
+  const handleClearCart=async ()=>{
+    await clearCart();
     loadCart();
   }
 
@@ -81,8 +86,7 @@ export default function Cart() {
 
       {/* Coupon and Update Button */}
       <div className="flex items-center gap-4 mt-6">
-        <input type="text" placeholder="Coupon code" className="border px-4 py-2 rounded w-64" />
-        <button className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800">APPLY COUPON</button>
+        <button onClick={()=>handleClearCart()} className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-800">clear cart</button>
         <button className="ml-auto bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">UPDATE CART</button>
       </div>
 

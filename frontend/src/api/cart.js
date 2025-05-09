@@ -94,3 +94,32 @@ export const deleteProduct=async (id)=>{
     return [];
   }
 }
+
+export const clearCart=async ()=>{
+  try {
+    const token=localStorage.getItem("login-token");
+    if(!token){
+      toast.error("please login to continue!");
+    }
+    const res=await fetch(`http://localhost:8000/api/cart/clear`,{
+      method:'DELETE',
+      headers:{
+      'Content-Type':'application/json',
+      'Authorization':`Bearer ${token}` 
+      }
+    });
+    const data=await res.json();
+    if(res.json){
+      console.log(data.message);
+      return data
+    }
+    else{
+     console.log(data.error);
+      return []
+    }
+
+  } catch (error) {
+    console.log('ERROR!',data.error)
+    return []
+  }
+}
