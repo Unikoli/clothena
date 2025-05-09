@@ -49,10 +49,10 @@ const store = async (req, res) => {
 };
 const getCartDetails = async (req, res) => {
     try {
-        const carts = await Cart.find();
+        const carts = await Cart.find().populate("product");
         if (carts.length === 0) {
             return res.status(404).json({
-                message: "non items availabe "
+                error: "non items availabe "
             })
         };
         res.status(200).json({
