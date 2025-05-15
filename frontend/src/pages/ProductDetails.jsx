@@ -8,10 +8,14 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
+ const  HANDLEADDTOCART =async (product)=>{
+  const data=await handleAddToCart(product);
+  console.log("helllo",data)
+ }
   useEffect(() => {
     async function loadProduct() {
       const data = await fetchProductDetails(id);
-      setProduct(data);
+      setProduct(data.product);
     }
     loadProduct();
   }, [id]);
@@ -56,7 +60,7 @@ export default function ProductDetail() {
 
           {/* Action Buttons */}
           <div className="flex gap-4 pt-4">
-            <button onClick={()=>handleAddToCart(product._id)} className="flex-1 bg-red-700 text-white font-semibold py-3 rounded hover:bg-red-800 transition">
+            <button onClick={()=>HANDLEADDTOCART(product)} className="flex-1 bg-red-700 text-white font-semibold py-3 rounded hover:bg-red-800 transition">
               Add to Cart
             </button>
             <button className="flex-1 bg-red-800 text-white font-semibold py-3 rounded hover:bg-red-900 transition">

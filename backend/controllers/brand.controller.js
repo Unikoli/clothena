@@ -20,7 +20,7 @@ const add = async (req, res) => {
 // FETCH ALL BRANDS
 const index = async (req, res) => {
     try {
-        const brands = await Brand.find();
+        const brands = await Brand.find().select('name');
         if (brands.length === 0) {
             return res.status(404).json({
                 message: "No brands found!"

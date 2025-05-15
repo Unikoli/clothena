@@ -11,7 +11,7 @@ const store = async (req, res) => {
         // console.log(userId)
         if (!product) {
             return res.status(404).json({
-                message: "product not found!"
+                error: "product not found!"
             });
         }
         //if the product already exists then,increments the product qunatity!
@@ -153,9 +153,11 @@ const deleteProductById = async (req, res) => {
 // }
 
 
+
 module.exports = {
     store,
     getCartDetails,
     clearCart,
-    deleteProductById
+    deleteProductById,
+    
 }

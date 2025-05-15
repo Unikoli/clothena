@@ -1,22 +1,37 @@
 const Product = require("../models/product.model")
 
-const index=async (req,res)=>{
-    try {
-        const products=await Product.find()
-        .populate("brand","name")
-        .populate("category","name")
-        ;
-        res.status(201).json({
-            message:"all products displayed!",
-            products
-        })
-    } catch (err) {
-        res.status(201).json({
-            message:"cannot display the products!",
-            error:err.message
-        })
+const index = async (req, res) => {
+  try {
+    const { brandName, categoryName } = req.query;
+
+    let products = await Product.find()
+      .populate("brand", "name")
+      .populate("category", "name");
+
+    if (brandName) {
+      products = products.filter(product =>
+        product.brand?.name.toLowerCase() === brandName.toLowerCase()
+      );
     }
-}
+
+    if (categoryName) {
+      products = products.filter(product =>
+        product.category?.name.toLowerCase() === categoryName.toLowerCase()
+      );
+    }
+
+    res.status(200).json({
+      message: "Filtered products displayed!",
+      products
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: "Failed to fetch products!",
+      error: err.message
+    });
+  }
+};
+
 
 const add=async (req,res)=>{
     const {name,price,description,category,brand}=req.body

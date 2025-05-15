@@ -21,6 +21,9 @@ const Register = () => {
                 body:JSON.stringify({email,password,username})
             });
             const data=await res.json();
+           
+
+            
             if(res.ok)
             {
                 console.log(`user ${data.username} created successfully! `);
@@ -29,10 +32,13 @@ const Register = () => {
                 setTimeout(() => {
                     setMessage(" ");
                     toast.success("user registered successfully!")
-                    navigate('/login')
+                    // navigate('/login')
                   }, 1000);
                
             }
+           else{
+            setMessage(data.message)
+           }
             
         } catch (error) {
             console.error("error fetching data!",error);

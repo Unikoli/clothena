@@ -50,6 +50,7 @@ const AuthForm = ({
                 id='email'
                 name='email'
                 value={email}
+                
                 onChange={(e) => setEmail(e.target.value)}
 
               />

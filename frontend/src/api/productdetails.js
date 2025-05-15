@@ -4,7 +4,8 @@ export default async function fetchProductDetails(id) {
       const data = await res.json();
   
       if (res.ok) {
-        return data.product;
+        console.log("products!",data)
+        return data;
       } else {
         console.error(data.message);
         return null;

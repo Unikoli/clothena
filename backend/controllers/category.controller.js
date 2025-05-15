@@ -21,7 +21,7 @@ const add = async (req, res) => {
 //FETCH ALL CATEGORIES
 const index = async (req, res) => {
     try {
-        const categories = await Category.find();
+        const categories = await Category.find().select('name');
 
         if (categories.length === 0) {
             return res.status(404).json({

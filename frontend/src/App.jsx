@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import Home from './pages/Home'
 import ProductDetail from './pages/ProductDetails'
 import Cart from './pages/Cart'
+import ProfilePage from './pages/Profile'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -22,6 +23,7 @@ function App() {
 
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </>
   )
