@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import AuthForm from '../components/AuthForm';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const fetchData = async () => {
         try {
-            const res = await fetch("http://localhost:8000/api/auth/login", {
+            const res = await fetch(`${config.backendURL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

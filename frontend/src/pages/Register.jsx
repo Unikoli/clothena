@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import AuthForm from '../components/AuthForm';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 
 const Register = () => {
@@ -13,7 +14,7 @@ const Register = () => {
     const navigate=useNavigate();
      const fetchData=async ()=>{
         try {
-            const res= await fetch("http://localhost:8000/api/auth/register",{
+            const res= await fetch(`${config.backendURL}/api/auth/register`,{
                 method:'POST',
                 headers:{  
                     'Content-Type':'application/json'
