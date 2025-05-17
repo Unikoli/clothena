@@ -1,3 +1,5 @@
+import config from "../config";
+
 // Fetch categories
 export async function fetchCategories() {
   try {
@@ -35,7 +37,7 @@ export async function fetchBrands() {
 export async function fetchproducts(filters = {}) {
   try {
     const params = new URLSearchParams(filters).toString();
-    const res = await fetch(`http://localhost:8000/api/product?${params}`, {
+    const res = await fetch(`${config.backendURL}/api/product?${params}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
