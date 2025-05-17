@@ -1,6 +1,6 @@
 // frontend/src/config.js
 const config = {
-  backendURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000',
+  backendURL: process.env.REACT_APP_BACKEND_URL,
 };
 
 export default config;
