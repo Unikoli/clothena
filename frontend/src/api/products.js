@@ -1,9 +1,10 @@
+import API_BASE_URL from "../config";
 import config from "../config";
 
 // Fetch categories
 export async function fetchCategories() {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/category`);
+    const res = await fetch(`${API_BASE_URL}/api/category`);
     if (!res.ok) throw new Error('Failed to fetch categories');
     const data = await res.json();
     console.log(data)
@@ -20,7 +21,7 @@ export async function fetchCategories() {
 // Fetch brands
 export async function fetchBrands() {
   try {
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/brand`);
+    const res = await fetch(`${API_BASE_URL}/api/brand`);
     if (!res.ok) throw new Error('Failed to fetch brands');
     const data = await res.json();
     console.log(data)
@@ -37,7 +38,7 @@ export async function fetchBrands() {
 export async function fetchproducts(filters = {}) {
   try {
     const params = new URLSearchParams(filters).toString();
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product?${params}`, {
+    const res = await fetch(`${API_BASE_URL}/api/product?${params}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
