@@ -1,7 +1,7 @@
 const userProfile = async () => {
     const token =localStorage.getItem('login-token')
     try {
-        const res = await fetch(`${config.backendURL}/api/auth/user`, {
+        const res = await fetch(`${API_BASE_URL}/api/auth/user`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             },

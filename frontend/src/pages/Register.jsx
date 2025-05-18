@@ -14,7 +14,7 @@ const Register = () => {
     const navigate=useNavigate();
      const fetchData=async ()=>{
         try {
-            const res= await fetch(`${config.backendURL}/api/auth/register`,{
+            const res= await fetch(`${API_BASE_URL}/api/auth/register`,{
                 method:'POST',
                 headers:{  
                     'Content-Type':'application/json'

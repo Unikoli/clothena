@@ -10,7 +10,7 @@ export const handleAddToCart = async (product) => {
   }
 
   try {
-    const res = await fetch(`${config.backendURL}/api/cart`, {
+    const res = await fetch(`${API_BASE_URL}/api/cart`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export const getCartItems=async ()=>{
       console.log("login required!")
       return [];
     }
-    const res=await fetch(`${config.backendURL}/api/cart`,{
+    const res=await fetch(`${API_BASE_URL}/api/cart`,{
       headers:{
         'Authorization':`Bearer ${token}`
       }
@@ -87,7 +87,7 @@ export const deleteProduct=async (id)=>{
         autoClose:500
       });
     }
-    const res=await fetch(`${config.backendURL}/api/cart/${id}`,{
+    const res=await fetch(`${API_BASE_URL}/api/cart/${id}`,{
       method:'DELETE',
       headers:{
         'Authorization':`Bearer ${token}`,
@@ -116,7 +116,7 @@ export const clearCart=async ()=>{
         autoClose:500
       });
     }
-    const res=await fetch(`${config.backendURL}/api/cart/clear`,{
+    const res=await fetch(`${API_BASE_URL}/api/cart/clear`,{
       method:'DELETE',
       headers:{
       'Content-Type':'application/json',
