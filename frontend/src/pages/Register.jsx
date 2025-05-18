@@ -4,6 +4,7 @@ import AuthForm from '../components/AuthForm';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import config from '../config';
+import API_BASE_URL from '../config';
 
 
 const Register = () => {

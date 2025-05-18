@@ -1,3 +1,5 @@
+import API_BASE_URL from "../config";
+
 const userProfile = async () => {
     const token =localStorage.getItem('login-token')
     try {

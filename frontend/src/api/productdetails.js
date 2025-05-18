@@ -1,3 +1,5 @@
+import API_BASE_URL from "../config";
+
 export default async function fetchProductDetails(id) {
     try {
       const res = await fetch(`${API_BASE_URL}/api/product/${id}`);
