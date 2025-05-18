@@ -37,7 +37,7 @@ const Login = () => {
                     autoClose: 500
                 });
                 localStorage.setItem("login-token", data.token);
-                navigate('/home')
+                navigate('/')
 
             }
         } catch (error) {
