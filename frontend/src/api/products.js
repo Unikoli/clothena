@@ -3,7 +3,7 @@ import config from "../config";
 // Fetch categories
 export async function fetchCategories() {
   try {
-    const res = await fetch(`${config.backendURL}/api/category`);
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/api/category`);
     if (!res.ok) throw new Error('Failed to fetch categories');
     const data = await res.json();
     console.log(data)
