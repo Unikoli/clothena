@@ -3,7 +3,7 @@ import config from "../config";
 // Fetch categories
 export async function fetchCategories() {
   try {
-    const res = await fetch("http://localhost:8000/api/category");
+    const res = await fetch(`${config.backendURL}/api/category`);
     if (!res.ok) throw new Error('Failed to fetch categories');
     const data = await res.json();
     console.log(data)
@@ -20,7 +20,7 @@ export async function fetchCategories() {
 // Fetch brands
 export async function fetchBrands() {
   try {
-    const res = await fetch("http://localhost:8000/api/brand");
+    const res = await fetch(`${config.backendURL}/api/brand`);
     if (!res.ok) throw new Error('Failed to fetch brands');
     const data = await res.json();
     console.log(data)
