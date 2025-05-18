@@ -17,7 +17,10 @@ const path = require("path");
 dbconnect();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.CLIENT_URL || "*", // Allow your frontend
+  credentials: true
+}));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 

@@ -1,6 +1,6 @@
 export default async function fetchProductDetails(id) {
     try {
-      const res = await fetch(`http://localhost:8000/api/product/${id}`);
+      const res = await fetch(`${config.backendURL}/api/product/${id}`);
       const data = await res.json();
   
       if (res.ok) {
