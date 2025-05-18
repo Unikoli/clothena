@@ -35,10 +35,13 @@ const index = async (req, res) => {
 
 const add=async (req,res)=>{
     const {name,price,description,category,brand}=req.body
-    const image = req.file
-    ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
-    : null;
+    // const image = req.file
+    // ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+    // : null;
   
+    const image = req.file
+    ? `${process.env.SERVER_URL}/uploads/${req.file.filename}`
+    : null;
     try {
         const product=await Product.create({
             name,price,description,
